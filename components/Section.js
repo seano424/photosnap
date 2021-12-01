@@ -35,6 +35,8 @@ function Section({ primary, swapped, image, title, description }) {
 export default Section
 
 const Container = tw.div`
+  relative
+  top-20
   grid
   sm:grid-cols-5
   xl:grid-cols-7
