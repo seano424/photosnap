@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Header from '../components/Header'
 import Section from '../components/Section'
+import Stories from '../components/Stories'
 import { homeContent } from '../lib/homeContent'
 
 export default function Home() {
@@ -11,17 +12,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <Header />
-      {homeContent &&
-        homeContent.map((d, idx) => (
-          <Section
-            primary={idx === 0}
-            swapped={idx % 2 !== 0}
-            image={d.image}
-            title={d.title}
-            description={d.description}
-          />
-        ))}
-      {/* PhotoGrid */}
+      <Section />
+      <Stories limit={4} />
       {/* Features */}
       {/* Footer */}
     </div>

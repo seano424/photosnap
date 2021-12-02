@@ -1,33 +1,32 @@
 import tw from 'tailwind-styled-components/dist/tailwind'
 import Image from 'next/image'
+import Button from './Button'
+import { homeContent } from '../lib/homeContent'
 
 function Section({ primary, swapped, image, title, description }) {
   return (
     <Container>
-      <ImageWrapper>
-        <Image
-          className="object-cover object-center"
-          src={`/assets/home/desktop/${image}`}
-          layout="fill"
-        />
-      </ImageWrapper>
-      <ContentWrapper primary={primary} swapped={swapped}>
-        {primary && <GradientBar />}
-        <Title>{title}</Title>
-        <Content>{description}</Content>
-        <Button>
-          {primary ? 'Get an invite' : 'View the stories'}
-          <svg xmlns="http://www.w3.org/2000/svg" width="43" height="14">
-            <g
-              fill="none"
-              fill-rule="evenodd"
-              stroke={primary ? 'white' : 'black'}
-            >
-              <path d="M0 7h41.864M35.428 1l6 6-6 6" />
-            </g>
-          </svg>
-        </Button>
-      </ContentWrapper>
+      {homeContent &&
+        homeContent.map((h, idx) => (
+          <Wrapper key={idx}>
+            <ImageWrapper>
+              <Image
+                className="object-cover object-center"
+                src={`/assets/home/desktop/${h.image}`}
+                layout="fill"
+              />
+            </ImageWrapper>
+            <ContentWrapper primary={idx === 0} swapped={idx % 2 !== 0}>
+              {idx === 0 && <GradientBar />}
+              <Title>{h.title}</Title>
+              <Content>{h.description}</Content>
+              <Button
+                primary={idx === 0}
+                text={idx === 0 ? 'Get an invite' : 'View the stories'}
+              />
+            </ContentWrapper>
+          </Wrapper>
+        ))}
     </Container>
   )
 }
@@ -35,8 +34,10 @@ function Section({ primary, swapped, image, title, description }) {
 export default Section
 
 const Container = tw.div`
+  mt-20
+`
+const Wrapper = tw.div`
   relative
-  top-20
   grid
   sm:grid-cols-5
   xl:grid-cols-7
@@ -82,12 +83,6 @@ const Content = tw.p`
   leading-relaxed
   text-sm
   tracking-wide
-`
-const Button = tw.button` 
-  w-full 
-  flex 
-  items-center
-  gap-4
 `
 
 const GradientBar = tw.div` 
