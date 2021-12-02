@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import { Squeeze as Hamburger } from 'hamburger-react'
 import tw from 'tailwind-styled-components/dist/tailwind'
 import useOutsideClick from '../hooks/useOutsideClick'
+import Logo from './Logo'
 
 function Header() {
   const [isOpen, setOpen] = useState(false)
@@ -15,10 +16,7 @@ function Header() {
     <div ref={ref}>
       {/* Main Navigation Items */}
       <NavigationWrapper>
-        <Logo>
-          <img src="/favicon.svg" alt="Logo" />
-          <h1>Photosnap</h1>
-        </Logo>
+        <Logo />
         <NavigationItems>
           <a href="#">Stories</a>
           <a href="#">Features</a>
@@ -61,13 +59,6 @@ const NavigationWrapper = tw.div`
   text-2xl
   sm:text-xl
   xl:px-20
-`
-const Logo = tw.div`
-  flex
-  items-center
-  space-x-2
-  uppercase
-  font-black
 `
 
 const HamburgerWrapper = tw.div`
