@@ -1,32 +1,60 @@
 import tw from 'tailwind-styled-components/dist/tailwind'
 import Image from 'next/image'
 import Button from './Button'
-import { homeContent } from '../lib/homeContent'
 
-function Section() {
+function Section({ limit, items, type, text }) {
   return (
     <Container>
-      {homeContent &&
-        homeContent.map((h, idx) => (
-          <Wrapper key={idx}>
-            <ImageWrapper>
-              <Image
-                className="object-cover object-center"
-                src={`/assets/home/desktop/${h.image}`}
-                layout="fill"
-              />
-            </ImageWrapper>
-            <ContentWrapper primary={idx === 0} swapped={idx % 2 !== 0}>
-              {idx === 0 && <GradientBar />}
-              <Title>{h.title}</Title>
-              <Description primary={idx === 0}>{h.description}</Description>
-              <Button
+      {items &&
+        items
+          .slice(0, limit)
+          .map(({ image, description, title, author, date }, idx) => (
+            <Wrapper key={idx}>
+              <ImageWrapper type={type}>
+                <Image
+                  className="object-cover object-center"
+                  src={image}
+                  layout="fill"
+                />
+              </ImageWrapper>
+              <ContentWrapper
+                type={type}
                 primary={idx === 0}
-                text={idx === 0 ? 'Get an invite' : 'View the stories'}
-              />
-            </ContentWrapper>
-          </Wrapper>
-        ))}
+                swapped={idx % 2 !== 0}
+              >
+                {type === 'stories' && (
+                  <Image
+                    className={`object-cover object-center`}
+                    src={image}
+                    layout="fill"
+                  />
+                )}
+                {idx === 0 && <GradientBar type={type} />}
+                <Content>
+                  {type === 'stories' && (
+                    <Headline>Last month's feature story</Headline>
+                  )}
+                  <Title>{title}</Title>
+                  {type === 'stories' && (
+                    <Subtitle>
+                      <Date>{date}</Date> by {author}
+                    </Subtitle>
+                  )}
+                  <Description primary={idx === 0}>{description}</Description>
+                  <Button
+                    primary={idx === 0}
+                    text={
+                      text
+                        ? text
+                        : idx === 0
+                        ? 'Get an invite'
+                        : 'View the stories'
+                    }
+                  />
+                </Content>
+              </ContentWrapper>
+            </Wrapper>
+          ))}
     </Container>
   )
 }
@@ -38,7 +66,7 @@ const Container = tw.div`
 `
 const Wrapper = tw.div`
   relative
-  grid
+  sm:grid
   sm:grid-cols-5
   xl:grid-cols-12
   sm:h-full
@@ -46,6 +74,7 @@ const Wrapper = tw.div`
 `
 
 const ImageWrapper = tw.div`
+  ${(p) => p.type === 'stories' && 'hidden'}
   col-span-3
   xl:col-span-7
   relative
@@ -56,39 +85,60 @@ const ImageWrapper = tw.div`
   `
 
 const ContentWrapper = tw.div`
-  col-span-2
-  xl:col-span-5
+  ${(p) =>
+    p.type === 'stories'
+      ? 'col-span-5 xl:col-span-12 px-20'
+      : 'col-span-2 xl:col-span-5 xl:items-center px-6'}
   flex 
   flex-col 
   h-full 
   w-full  
-  px-10
   py-20
   sm:py-10
   xl:justify-center
   xl:py-0
-  xl:p-40
   space-y-4
   relative
-${(p) => (p.swapped ? '' : 'sm:order-first')}
+  ${(p) => (p.swapped ? '' : 'sm:order-first')}
   ${(p) => (p.primary ? 'bg-black text-white' : 'bg-white text-black')}
   `
 
-const Title = tw.h1`
-  text-2xl
-  font-bold
-  tracking-wider
+const Content = tw.div`
+  z-20
+  space-y-8
+  max-w-sm
+  
+`
+
+const Headline = tw.h1`
+  text-sm
+  tracking-widest
   uppercase
   `
+
+const Title = tw(Headline)`
+  text-3xl
+  font-bold
+`
+
+const Subtitle = tw.p`
+  
+`
+
+const Date = tw.span`
+  text-opacity-70
+  text-white
+`
 const Description = tw.p`
   text-opacity-70
   leading-relaxed
   text-sm
   ${(p) => (p.primary ? 'text-grey' : 'text-black')}
-  xl:w-80
+  
 `
 
-const GradientBar = tw.div` 
+const GradientBar = tw.div`
+ ${(p) => p.type === 'stories' && 'hidden'}
   absolute 
   sm:w-1
   left-10 

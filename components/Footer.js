@@ -108,9 +108,10 @@ const PageLinks1 = tw.div`
   -top-2
   space-y-4
   left-72
-`
+  `
 const PageLinks2 = tw.div`
   w-full
+  
   flex
   xl:hidden
   flex-col
@@ -122,6 +123,7 @@ const PageLinks2 = tw.div`
   justify-center
   sm:justify-start
   mb-20
+  sm:mt-4
   sm:mb-10
 `
 

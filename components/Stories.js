@@ -1,16 +1,15 @@
 import Image from 'next/image'
 import tw from 'tailwind-styled-components/dist/tailwind'
-import { homeStories } from '../lib/homeStories'
 import Button from './Button'
 
-function Stories({ limit }) {
+function Stories({ limit, items }) {
   return (
     <Container>
-      {homeStories &&
-        homeStories.slice(0, limit).map((h) => (
+      {items &&
+        items.slice(0, limit).map((h) => (
           <ImageWrapper>
             <Image
-              src={`/assets/stories/desktop/${h.image}`}
+              src={`${h.image}`}
               layout="fill"
               objectFit="cover"
               objectPosition="top"
