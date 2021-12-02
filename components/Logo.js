@@ -1,9 +1,11 @@
+import { useRouter } from 'next/dist/client/router'
 import React from 'react'
 import tw from 'tailwind-styled-components/dist/tailwind'
 
 function Logo() {
+  const router = useRouter()
   return (
-    <Container>
+    <Container onClick={() => router.push('/')}>
       <img src="/favicon.svg" alt="Logo" />
       <h1>Photosnap</h1>
     </Container>
@@ -19,4 +21,5 @@ const Container = tw.div`
   uppercase
   font-black
   text-2xl
+  cursor-pointer
 `

@@ -17,14 +17,24 @@ export default function Footer() {
             ))}
         </SocialMediaIcons1>
         <PageLinks1>
-          {links && links.map(({ link }, idx) => <Link href="#">{link}</Link>)}
+          {links &&
+            links.map(({ link }, idx) => (
+              <Link key={idx} href="#">
+                {link}
+              </Link>
+            ))}
         </PageLinks1>
         <ButtonWrapper1>
           <Button primary text="Get an invite" />
         </ButtonWrapper1>
       </TopWrapper>
       <PageLinks2>
-        {links && links.map(({ link }, idx) => <Link href="#">{link}</Link>)}
+        {links &&
+          links.map(({ link }, idx) => (
+            <Link key={idx} href="#">
+              {link}
+            </Link>
+          ))}
       </PageLinks2>
       <ButtonWrapper2>
         <Button primary text="Get an invite" />

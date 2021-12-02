@@ -3,6 +3,8 @@ import { Squeeze as Hamburger } from 'hamburger-react'
 import tw from 'tailwind-styled-components/dist/tailwind'
 import useOutsideClick from '../hooks/useOutsideClick'
 import Logo from './Logo'
+import { links } from '../lib/links'
+import Link from 'next/link'
 
 function Header() {
   const [isOpen, setOpen] = useState(false)
@@ -18,9 +20,11 @@ function Header() {
       <NavigationWrapper>
         <Logo />
         <NavigationItems>
-          <a href="#">Stories</a>
-          <a href="#">Features</a>
-          <a href="#">Pricing</a>
+          {links.map(({ link, title }) => (
+            <Link href={`/${link}`}>
+              <Anchor>{title}</Anchor>
+            </Link>
+          ))}
         </NavigationItems>
         <NavigationButton>Get an Invite</NavigationButton>
         <HamburgerWrapper>
@@ -135,4 +139,9 @@ const Button = tw.button`
 const NavigationButton = tw(Button)`
   hidden
   md:inline-flex
+`
+
+const Anchor = tw.a`
+  capitalize
+  cursor-pointer
 `

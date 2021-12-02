@@ -1,5 +1,5 @@
 import Layout from '../components/Layout'
-import Stories from './stories'
+import Stories from '../components/stories'
 import Section from '../components/Section'
 import { homeStories } from '../lib/homeStories'
 
@@ -14,6 +14,7 @@ function index() {
         text="Read the story"
       />
       {/* Stories */}
+      <Stories items={homeStories.slice(1, 13)} />
     </Layout>
   )
 }
