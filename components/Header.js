@@ -46,7 +46,7 @@ function Header() {
 export default Header
 
 const NavigationWrapper = tw.div`
-  z-20
+  z-50
   flex
   w-full
   h-20
@@ -72,7 +72,7 @@ left-0
 right-0 
 bg-white 
 h-80 
-z-10
+z-40
 transform 
 ${(p) => (p.open ? 'translate-y-0' : '-translate-y-96')}
 transition-transform
