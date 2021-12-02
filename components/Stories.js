@@ -42,7 +42,7 @@ const ImageWrapper = tw.div`
   relative 
   w-full
   min-h-full
-  h-[500px]
+  h-[400px]
 `
 
 const ContentWrapper = tw.div`

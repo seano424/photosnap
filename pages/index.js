@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import Section from '../components/Section'
 import Stories from '../components/Stories'
-import { homeContent } from '../lib/homeContent'
+import Features from '../components/Features'
 
 export default function Home() {
   return (
@@ -15,6 +15,7 @@ export default function Home() {
       <Section />
       <Stories limit={4} />
       {/* Features */}
+      <Features limit={3} />
       {/* Footer */}
     </div>
   )
