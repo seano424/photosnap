@@ -1,6 +1,7 @@
 import tw from 'tailwind-styled-components/dist/tailwind'
 import { features } from '../lib/features'
-function Features({ limit }) {
+
+export default function Features({ limit }) {
   return (
     <Container>
       {features &&
@@ -15,36 +16,37 @@ function Features({ limit }) {
   )
 }
 
-export default Features
-
 const Container = tw.div`
-  md:flex
-  md:justify-center
+  grid 
+  xl:grid-cols-3
+  md:grid-cols-2
+  my-8
+  xl:px-16
   `
+
+const Wrapper = tw.div`
+  flex
+  flex-col
+  gap-4
+  p-20
+  lg:p-10
+  justify-center
+  items-center
+  text-center
+  h-[250px]
+`
+
 const Image = tw.img`
   h-8
 `
 const Title = tw.h1`
   font-bold
   tracking-wider
-  text-sm  
+  text-base
 `
 
 const Description = tw.p`
   font-thin
-  text-xs  
-  max-w-sm
-`
-
-const Wrapper = tw.div`
-  flex
-  flex-col
-  space-y-2
-  p-5
-  my-8
-  gap-4
-  justify-center
-  items-center
-  text-center
-  h-[250px]
+  text-sm 
+  leading-relaxed 
 `

@@ -2,7 +2,8 @@ import tw from 'tailwind-styled-components/dist/tailwind'
 import Image from 'next/image'
 import Button from './Button'
 
-function Section({ limit, items, type, text }) {
+export default function Section({ limit, items, page, text }) {
+  const storiesPage = page === 'stories'
   return (
     <Container>
       {items &&
@@ -10,7 +11,7 @@ function Section({ limit, items, type, text }) {
           .slice(0, limit)
           .map(({ image, description, title, author, date }, idx) => (
             <Wrapper key={idx}>
-              <ImageWrapper type={type}>
+              <ImageWrapper page={storiesPage}>
                 <Image
                   className="object-cover object-center"
                   src={image}
@@ -18,39 +19,44 @@ function Section({ limit, items, type, text }) {
                 />
               </ImageWrapper>
               <ContentWrapper
-                type={type}
+                page={storiesPage}
                 primary={idx === 0}
                 swapped={idx % 2 !== 0}
               >
-                {type === 'stories' && (
+                {storiesPage && (
                   <Image
                     className={`object-cover object-center`}
                     src={image}
                     layout="fill"
                   />
                 )}
-                {idx === 0 && <GradientBar type={type} />}
+
+                {idx === 0 && <GradientBar page={storiesPage} />}
                 <Content>
-                  {type === 'stories' && (
+                  {storiesPage && (
                     <Headline>Last month's feature story</Headline>
                   )}
                   <Title>{title}</Title>
-                  {type === 'stories' && (
+                  {storiesPage && (
                     <Subtitle>
                       <Date>{date}</Date> by {author}
                     </Subtitle>
                   )}
-                  <Description primary={idx === 0}>{description}</Description>
-                  <Button
-                    primary={idx === 0}
-                    text={
-                      text
-                        ? text
-                        : idx === 0
-                        ? 'Get an invite'
-                        : 'View the stories'
-                    }
-                  />
+                  <Description primary={(idx === 0).toString()}>
+                    {description}
+                  </Description>
+                  {text !== 'none' && (
+                    <Button
+                      primary={(idx === 0).toString()}
+                      text={
+                        text
+                          ? text
+                          : idx === 0
+                          ? 'Get an invite'
+                          : 'View the stories'
+                      }
+                    />
+                  )}
                 </Content>
               </ContentWrapper>
             </Wrapper>
@@ -58,8 +64,6 @@ function Section({ limit, items, type, text }) {
     </Container>
   )
 }
-
-export default Section
 
 const Container = tw.div`
   mt-20
@@ -74,7 +78,7 @@ const Wrapper = tw.div`
 `
 
 const ImageWrapper = tw.div`
-  ${(p) => p.type === 'stories' && 'hidden'}
+  ${(p) => p.page && 'hidden'}
   col-span-3
   xl:col-span-7
   relative
@@ -86,7 +90,7 @@ const ImageWrapper = tw.div`
 
 const ContentWrapper = tw.div`
   ${(p) =>
-    p.type === 'stories'
+    p.page
       ? 'col-span-5 xl:col-span-12 px-20'
       : 'col-span-2 xl:col-span-5 xl:items-center px-6'}
   flex 
@@ -138,7 +142,7 @@ const Description = tw.p`
 `
 
 const GradientBar = tw.div`
- ${(p) => p.type === 'stories' && 'hidden'}
+ ${(p) => p.page && 'hidden'}
   absolute 
   sm:w-1
   left-10 

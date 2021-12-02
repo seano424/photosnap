@@ -2,7 +2,7 @@ import { useRouter } from 'next/dist/client/router'
 import React from 'react'
 import tw from 'tailwind-styled-components/dist/tailwind'
 
-function Logo() {
+export default function Logo() {
   const router = useRouter()
   return (
     <Container onClick={() => router.push('/')}>
@@ -11,8 +11,6 @@ function Logo() {
     </Container>
   )
 }
-
-export default Logo
 
 const Container = tw.div`
   flex

@@ -2,7 +2,7 @@ import Footer from './Footer'
 import Head from 'next/head'
 import Header from './Header'
 
-function Layout({ children }) {
+export default function Layout({ children }) {
   return (
     <div className="flex flex-col min-h-screen">
       <Head>
@@ -15,5 +15,3 @@ function Layout({ children }) {
     </div>
   )
 }
-
-export default Layout

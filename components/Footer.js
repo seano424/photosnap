@@ -18,9 +18,9 @@ export default function Footer() {
         </SocialMediaIcons1>
         <PageLinks1>
           {links &&
-            links.map(({ link }, idx) => (
-              <Link key={idx} href="#">
-                {link}
+            links.map(({ link, title }, idx) => (
+              <Link key={idx} href={`/${link}`}>
+                {title}
               </Link>
             ))}
         </PageLinks1>
@@ -115,7 +115,7 @@ const PageLinks1 = tw.div`
   flex-col
   items-start
   absolute
-  -top-2
+  top-0
   space-y-4
   left-72
   `

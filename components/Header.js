@@ -6,7 +6,7 @@ import Logo from './Logo'
 import { links } from '../lib/links'
 import Link from 'next/link'
 
-function Header() {
+export default function Header() {
   const [isOpen, setOpen] = useState(false)
   const ref = useRef()
 
@@ -21,7 +21,7 @@ function Header() {
         <Logo />
         <NavigationItems>
           {links.map(({ link, title }) => (
-            <Link href={`/${link}`}>
+            <Link key={link} href={`/${link}`}>
               <Anchor>{title}</Anchor>
             </Link>
           ))}
@@ -36,9 +36,15 @@ function Header() {
       <SideBarWrapper open={isOpen}>
         <ItemsWrapper>
           <Items>
-            <a href="#">Stories</a>
-            <a href="#">Features</a>
-            <a href="#">Pricing</a>
+            <Link href="/stories">
+              <a>Stories</a>
+            </Link>
+            <Link href="/features">
+              <a>Features</a>
+            </Link>
+            <Link href="/pricing">
+              <a>Pricing</a>
+            </Link>
           </Items>
           <Button>Get an Invite</Button>
         </ItemsWrapper>
@@ -46,8 +52,6 @@ function Header() {
     </div>
   )
 }
-
-export default Header
 
 const NavigationWrapper = tw.div`
   z-50
@@ -144,4 +148,9 @@ const NavigationButton = tw(Button)`
 const Anchor = tw.a`
   capitalize
   cursor-pointer
+  transform
+  motion-safe:hover:scale-110
+  transition-transform
+  duration-300
+  ease-out
 `

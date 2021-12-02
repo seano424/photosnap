@@ -1,5 +1,5 @@
 import Section from '../components/Section'
-import Stories from '../components/Stories'
+import Grid from '../components/Grid'
 import Features from '../components/Features'
 import Layout from '../components/Layout'
 import { homeStories } from '../lib/homeStories'
@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <Layout>
       <Section items={homeContent} limit={3} />
-      <Stories items={homeStories} limit={4} />
+      <Grid items={homeStories} limit={4} />
       <Features limit={3} />
     </Layout>
   )

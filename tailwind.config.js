@@ -11,7 +11,22 @@ module.exports = {
       pink: '#BC7198',
       blue: '#5A77FF',
     },
-    extend: {},
+    extend: {
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        'move-up': {
+          '0%, 100%': { transform: 'translate-y-0' },
+          '50%': { transform: 'translate-y-96' },
+        },
+      },
+      animation: {
+        wiggle: 'wiggle 1s ease-in-out',
+        'move-up': 'move-up 1s ease-in-out',
+      },
+    },
   },
   variants: {
     extend: {},
