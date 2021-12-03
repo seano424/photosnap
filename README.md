@@ -1,4 +1,23 @@
-# Next.js + Tailwind CSS Example
+# Photosnap!
+![home](./public/images/photosnap.png)
+
+## ✨ Features
+
+- Responsive
+- CSS Grid
+- Fast thanks to Next.js and Vercel
+- GitHub CI to build and lint project
+
+## 📦 Made with
+
+- react context
+- react
+- styled components
+- tailwind styled components
+- next.js
+- vercel
+- headlessui
+
 
 This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v2.2)](https://blog.tailwindcss.com/tailwindcss-2-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
 
