@@ -1,11 +1,9 @@
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { Switch } from '@headlessui/react'
 import tw from 'tailwind-styled-components/dist/tailwind'
 import { SwitchContext } from '../context/SwitchContext'
 
 export default function Toggle() {
-  const [enabled, setEnabled] = useState(false)
-
   const [toggled, setToggled] = useContext(SwitchContext)
 
   return (

@@ -2,7 +2,6 @@ import React from 'react'
 import tw from 'tailwind-styled-components/dist/tailwind'
 
 export default function Button({ primary, text }) {
-  console.log()
   return (
     <Wrapper>
       <Text>{text}</Text>
