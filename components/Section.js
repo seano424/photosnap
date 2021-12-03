@@ -42,9 +42,7 @@ export default function Section({ limit, items, page, text }) {
                       <Date>{date}</Date> by {author}
                     </Subtitle>
                   )}
-                  <Description primary={(idx === 0).toString()}>
-                    {description}
-                  </Description>
+                  <Description primary={idx === 0}>{description}</Description>
                   {text !== 'none' && (
                     <Button
                       primary={(idx === 0).toString()}
@@ -136,8 +134,9 @@ const Date = tw.span`
 const Description = tw.p`
   text-opacity-70
   leading-relaxed
+  tracking-wider
   text-sm
-  ${(p) => (p.primary ? 'text-grey' : 'text-black')}
+  ${(p) => (p.primary ? 'text-white' : 'text-black')}
   
 `
 

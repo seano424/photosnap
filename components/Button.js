@@ -1,10 +1,10 @@
 import React from 'react'
 import tw from 'tailwind-styled-components/dist/tailwind'
 
-export default function Button({ primary, text, invitation }) {
+export default function Button({ primary, text }) {
   console.log()
   return (
-    <Wrapper invitation={invitation}>
+    <Wrapper>
       <Text>{text}</Text>
       <svg xmlns="http://www.w3.org/2000/svg" width="43" height="14">
         <g fill="none" fillRule="evenodd" stroke={primary ? 'white' : 'black'}>
@@ -20,7 +20,7 @@ const Wrapper = tw.button`
   items-center
   gap-4
   min-w-max
-  ${(p) => p.invitation && 'hover:underline'}
+  hover:underline
 `
 const Text = tw.p`
   uppercase

@@ -36,7 +36,7 @@ const ImageWrapper = tw.div`
   h-[400px]
   cursor-pointer
   transition
-  hover:-translate-y-3
+  hover:-translate-y-5
   duration-200
   ease-in-out
 `
@@ -61,7 +61,6 @@ const GradientBar = tw.div`
  ${(p) => (p.show ? 'opacity-100' : 'opacity-0')}
   transition
   duration-200
-  hover:-translate-y-9
   ease-in-out
   absolute 
   h-2

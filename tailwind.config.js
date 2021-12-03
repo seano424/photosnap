@@ -26,6 +26,11 @@ module.exports = {
         wiggle: 'wiggle 1s ease-in-out',
         'move-up': 'move-up 1s ease-in-out',
       },
+      transitionProperty: {
+        height: 'height',
+        spacing: 'margin, padding',
+        bg: 'bg',
+      },
     },
   },
   variants: {

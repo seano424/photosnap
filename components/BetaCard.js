@@ -9,7 +9,7 @@ function BetaCard() {
       <Image src={`/assets/shared/desktop/bg-beta.jpg`} layout="fill" />
       <Wrapper>
         <Title>We’re in beta. Get your invite today!</Title>
-        <Button invitation text="Get an invite" primary />
+        <Button text="Get an invite" primary />
       </Wrapper>
     </Container>
   )
