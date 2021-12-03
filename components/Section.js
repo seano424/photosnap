@@ -11,7 +11,7 @@ export default function Section({ limit, items, page, text }) {
           .slice(0, limit)
           .map(({ image, description, title, author, date }, idx) => (
             <Wrapper key={idx}>
-              <ImageWrapper page={storiesPage}>
+              <ImageWrapper storiesPage={storiesPage}>
                 <Image
                   className="object-cover object-center"
                   src={image}
@@ -19,7 +19,7 @@ export default function Section({ limit, items, page, text }) {
                 />
               </ImageWrapper>
               <ContentWrapper
-                page={storiesPage}
+                storiesPage={storiesPage}
                 primary={idx === 0}
                 swapped={idx % 2 !== 0}
               >
@@ -76,7 +76,7 @@ const Wrapper = tw.div`
 `
 
 const ImageWrapper = tw.div`
-  ${(p) => p.page && 'hidden'}
+  ${(p) => p.storiesPage && 'hidden'}
   col-span-3
   xl:col-span-7
   relative
@@ -88,7 +88,7 @@ const ImageWrapper = tw.div`
 
 const ContentWrapper = tw.div`
   ${(p) =>
-    p.page
+    p.storiesPage
       ? 'col-span-5 xl:col-span-12 px-20'
       : 'col-span-2 xl:col-span-5 xl:items-center px-6'}
   flex 

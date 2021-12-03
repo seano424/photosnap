@@ -1,15 +1,24 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Switch } from '@headlessui/react'
 import tw from 'tailwind-styled-components/dist/tailwind'
+import { SwitchContext } from '../context/SwitchContext'
 
 export default function Toggle() {
   const [enabled, setEnabled] = useState(false)
 
+  const [toggled, setToggled] = useContext(SwitchContext)
+
   return (
     <Wrapper>
-      <CustomSwitch checked={enabled} onChange={setEnabled} enabled={enabled}>
-        <Circle aria-hidden="true" enabled={enabled} />
+      <MonthlyText monthly={!toggled}>Monthly</MonthlyText>
+      <CustomSwitch
+        checked={toggled}
+        onChange={() => setToggled(!toggled)}
+        enabled={toggled}
+      >
+        <Circle aria-hidden="true" enabled={toggled} />
       </CustomSwitch>
+      <YearlyText yearly={toggled}>Yearly</YearlyText>
     </Wrapper>
   )
 }
@@ -19,6 +28,24 @@ const Wrapper = tw.div`
   pb-4 
   flex 
   justify-center
+  items-center
+  space-x-8
+`
+
+const MonthlyText = tw.div`
+  ${(p) => (p.monthly ? 'text-black opacity-100' : 'text-black opacity-40')}
+  font-bold
+  transition
+  duration-200
+  ease-in-out
+`
+
+const YearlyText = tw.div`
+  font-bold  
+  transition
+  duration-200
+  ease-in-out
+  ${(p) => (p.yearly ? 'text-black opacity-100' : 'text-black opacity-40')}
 `
 
 const CustomSwitch = tw(Switch)`
